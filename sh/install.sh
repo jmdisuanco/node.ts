@@ -1,18 +1,8 @@
 #!/bin/bash
 
-# Function to download and unzip archive
 download_and_unzip () {
-  branch_name="$1"  # Capture the branch name argument
-  unzip_dir="${2:-my_project}"  # Capture the optional unzip directory argument (defaulting to 'my_project' if not provided)
-
-  # Download URL (replace with actual URL format, including branch name)
   download_url="https://github.com/jmdisuanco/node.ts/archive/$branch_name.zip"
-
-  # Archive filename (replace with actual filename, including extension)
   archive_filename="node.ts.zip"
-
-  # **WARNING** Downloading and executing scripts from untrusted sources can be dangerous.
-  # Please review the contents of this script (download_and_unzip.sh) before running it.
 
   # Try downloading with curl (if available)
   if command -v curl &> /dev/null; then
@@ -54,6 +44,9 @@ download_and_unzip () {
       rm -rf tmp
       rm -rf $archive_filename
       echo "Unzip successful! The template files for branch '$branch_name' are in the '$unzip_dir' directory."
+      echo "cd $unzip_dir"
+      echo "nvm use"
+      echo "pnpm install or yarn install or pnm install"
     else
       echo "Error unzipping archive."
       exit 1
@@ -63,15 +56,18 @@ download_and_unzip () {
   fi
 }
 
-# Script usage message (if no arguments provided)
-if [ $# -lt 1 ]; then
-  echo "Usage: $0 <branch_name> [unzip_dir]"
-  echo "  <branch_name>: The name of the branch to download (e.g., main, develop)"
-  echo "  [unzip_dir]: (Optional) The directory name for unzipped files (defaults to 'my_template')"
-  exit 1
-fi
+read -p "Enter the branch name (e.g., main): " branch_name
+read -p "Project name: " unzip_dir
+
+  while [[ -z "$branch_name" ]]; do
+    read -p "Enter the branch name (e.g., main): " branch_name
+  done
+
+    while [[ -z "$unzip_dir" ]]; do
+      read -p "Project name:" unzip_dir
+    done
 
 # Call the download_and_unzip function with arguments
-download_and_unzip "$1" "$2"
+download_and_unzip "$branch_name" "$unzip_dir"
 
 echo "All done!"
