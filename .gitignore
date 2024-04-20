@@ -1,0 +1,15 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+node_modules/
+# dotenv environment variables file
+.env
+.DS_Store
