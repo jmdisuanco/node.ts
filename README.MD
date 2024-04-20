@@ -1,2 +1,2 @@
-# NodeJS Typescript tempate
+# NodeJS Typescript template
 
