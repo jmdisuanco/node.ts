@@ -1,0 +1,30 @@
+{
+  "name": "Nodetstemplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "tsx watch ./src/index.ts",
+    "lint": "eslint . --ext .ts",
+    "build": "tsc",
+    "pub:patch": "tsc && npm version patch && npm publish",
+    "pub:minor": "tsc && npm version minor && npm publish",
+    "pub:major": "tsc && npm version major && npm publish",
+    "postpublish": "git push --follow-tags"
+  },
+  "keywords": [],
+  "author": "John Martin R. Disuanco",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "20.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "eslint": "^8.57.0",
+    "tsx": "^4.7.1",
+    "typescript": "4.5.2"
+  },
+  "dependencies": {
+    "8colors": "^1.0.1"
+  }
+}
